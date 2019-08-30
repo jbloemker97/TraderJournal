@@ -19,5 +19,6 @@ mongoose.connect(config.mongoURI, { useNewUrlParser: true })
 
 // Routes
 app.use('/user', require('./routes/user'));
+app.use('/strategy', require('./routes/strategy'));
 
 app.listen(PORT, () => { console.log(`Server listening on port: ${PORT}`); });
