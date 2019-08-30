@@ -55,7 +55,15 @@ async function login (req, res) {
     });
 }
 
+// Get current user
+
+async function currentUser (req, res) {
+    const user = await User.findById(req.user._id).select("-password");
+    res.send(user);
+}
+
 module.exports = {
     registerUser,
-    login
+    login,
+    currentUser
 };

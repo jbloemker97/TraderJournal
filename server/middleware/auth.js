@@ -4,7 +4,7 @@ const { jwtSecret } = require('../config/config');
 module.exports = function (req, res, next) {
     const token = req.headers['x-access-token'] || req.headers['authorization'];
 
-    if (!token) res.status(403).send({ error: 'Access denied. No token provided' });
+    if (!token) return res.status(403).send({ error: 'Access denied. No token provided' });
 
     try {
         const decoded = jwt.verify(token, jwtSecret);
