@@ -2,10 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
+const morgan = require('morgan');
 
 const PORT = 5000;
 
 let app = express();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(morgan('tiny')); // For Dev
 
 // Connect to mongodb
 mongoose.connect(config.mongoURI, { useNewUrlParser: true })
@@ -14,8 +19,5 @@ mongoose.connect(config.mongoURI, { useNewUrlParser: true })
 
 // Routes
 app.use('/user', require('./routes/user'));
-
-// Middleware
-app.use(bodyParser.json());
 
 app.listen(PORT, () => { console.log(`Server listening on port: ${PORT}`); });
