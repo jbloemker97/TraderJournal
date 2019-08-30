@@ -24,7 +24,9 @@ const Strategy = mongoose.model('Strategy', strategySchema);
 
 function validateNewStrategy (strategy) {
     const schema = {
-        title: Joi.string().min(3).max(255).required()
+        title: Joi.string().min(3).max(255).required(),
+        entryCheckList: Joi.array().items(Joi.string()),
+        exitCheckList: Joi.array().items(Joi.string())
     };
 
     return Joi.valildate(strategy, schema);
