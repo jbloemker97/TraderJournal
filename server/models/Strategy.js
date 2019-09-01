@@ -8,16 +8,18 @@ const strategySchema = mongoose.Schema({
         maxLength: 255,
         required: true
     },
-    entryCheckList: [{
-        type: String,
-        minLength: 3,
-        maxLength: 255,
-    }],
-    exitCheckList: [{
-        type: String,
-        minLength: 3,
-        maxLength: 255
-    }]
+    entryChecklist: {
+        type: [{
+            type: String,
+            maxLength: 255
+        }]
+    },
+    exitCheckList: {
+        type: [{
+            type: String,
+            maxLength: 255
+        }]
+    }
 });
 
 const Strategy = mongoose.model('Strategy', strategySchema);
@@ -29,7 +31,7 @@ function validateNewStrategy (strategy) {
         exitCheckList: Joi.array().items(Joi.string())
     };
 
-    return Joi.valildate(strategy, schema);
+    return Joi.validate(strategy, schema);
 }
 
 module.exports = {
