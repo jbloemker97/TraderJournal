@@ -26,11 +26,15 @@ async function addStrategy (req, res) {
 
 
 async function getStrategies (req, res) {
-    let response = await Strategy.find({ user: req.params.userid })
-        .populate('user')
-        .exec();
+    try {
+        const strategy = await Strategy.find({ user: req.params.userid })
+            .populate('user', '-password')
+            .exec();
 
-    res.send(response);
+            res.status(200).send(strategy);
+    }catch (err) {
+        return res.status(400).send({ error: `Could not get strategies. ${err}` });
+    }
 }
 
 module.exports = {
