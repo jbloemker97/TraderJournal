@@ -29,7 +29,9 @@ async function getStrategies (req, res) {
     try {
         const strategy = await Strategy.find({ user: req.params.userid })
             .populate('user', '-password')
+            .sort('title')
             .exec();
+            
 
             res.status(200).send(strategy);
     }catch (err) {
