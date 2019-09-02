@@ -17,9 +17,9 @@ async function addStrategy (req, res) {
 
     res.status(200).send({
         user: strategy.user,
-        title: req.body.title, 
-        entryCheckList: req.body.entryCheckList, 
-        exitCheckList: req.body.exitCheckList
+        title: strategy.title, 
+        entryCheckList: strategy.entryCheckList, 
+        exitCheckList: strategy.exitCheckList
     });
 
 }
