@@ -1,10 +1,24 @@
 <template>
-    <h1>Login</h1>
+    <div>
+        <NavBar />
+
+        <h1>Login</h1>
+
+        <Footer />
+    </div>
+    
 </template>
 
 <script>
+import NavBar from './global/NavBar';
+import Footer from './global/Footer';
+
 export default {
-    name: 'Login'
+    name: 'Login',
+    components: {
+        NavBar,
+        Footer
+    }
 }
 </script>
 

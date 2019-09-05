@@ -1,11 +1,24 @@
 <template>
-  <h1>Strategy</h1>
+  <div>
+    <NavBar />
+
+    <h1>Strategy</h1>
+
+    <Footer />
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'Strategy'
-}
+  import NavBar from './global/NavBar';
+  import Footer from './global/Footer';
+
+  export default {
+    name: 'Strategy',
+    components: {
+      NavBar,
+      Footer
+    }
+  }
 </script>
 
 <style scoped>

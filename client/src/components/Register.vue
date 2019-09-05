@@ -1,10 +1,23 @@
 <template>
-    <h1>Register</h1>
+    <div>
+        <NavBar />
+
+        <h1>Register</h1>
+
+        <Footer />
+    </div>
 </template>
 
 <script>
+    import NavBar from './global/NavBar';
+    import Footer from './global/Footer';
+
 export default {
-    name: 'Register'
+    name: 'Register',
+    components: {
+        NavBar,
+        Footer
+    }
 }
 </script>
 
