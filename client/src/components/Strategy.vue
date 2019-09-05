@@ -7,3 +7,7 @@ export default {
   name: 'Strategy'
 }
 </script>
+
+<style scoped>
+
+</style>
