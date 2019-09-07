@@ -17,8 +17,11 @@ export const store = new Vuex.Store({
     actions: {
         login: async ({ commit }, obj) => {
             let user = await API.login(obj.email, obj.password);
+            const error = user.error;
 
-            commit('setJwt', user);
+            commit('setJwt', user.headers['x-auth-token']);
+
+            API.finalizeLogin(error);
         },
         logout: ({ commit }) => {
             commit('setJwt', null);
@@ -26,7 +29,8 @@ export const store = new Vuex.Store({
     },
     mutations: {
         setJwt: (state, payload) => {
-            state.jwt = payload.headers['x-auth-token'];
+            // state.jwt = payload.headers['x-auth-token'];
+            state.jwt = payload;
         }
     },
     getters: {

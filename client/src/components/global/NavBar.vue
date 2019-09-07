@@ -8,22 +8,17 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">Logo</a>
+                <router-link :to="{ name: 'Home' }" class="navbar-brand">Logo</router-link>
 
                 <!-- Links -->
                 <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                        <a @click="call" class="nav-link" href="javasript::void()">Link 1</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                        </li>
                         <li class="nav-item" v-if="isLoggedIn">
-                        <router-link to="home" class="nav-link">Logout</router-link>
+                            <router-link :to="{ name: 'Home' }" class="nav-link" @click.native="logout">Logout</router-link>
                         </li>
+
                         <li class="nav-item" v-else>
-                        <router-link to="login" class="nav-link">Login</router-link>
+                            <router-link :to="{ name: 'Login' }" class="nav-link">Login</router-link>
                         </li>
                     </ul>
                 </div>
@@ -36,8 +31,8 @@
 export default {
     name: 'NavBar',
     methods: {
-        call () {
-            this.$store.dispatch('login');
+        logout () {
+            this.$store.dispatch('logout', null);
         }
     },
     computed: {
