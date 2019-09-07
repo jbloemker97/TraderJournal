@@ -9,10 +9,14 @@ const PORT = 5000;
 
 let app = express();
 
+const corsOptions = { // Add an origin when deployed
+    exposedHeaders: ['x-auth-token', 'x-access-token', 'authorization']
+};
+
 // Middleware
 app.use(bodyParser.json());
 app.use(morgan('tiny')); // For Dev
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Connect to mongodb
 mongoose.connect(config.mongoURI, { useNewUrlParser: true })
