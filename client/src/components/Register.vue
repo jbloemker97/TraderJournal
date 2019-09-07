@@ -2,7 +2,19 @@
     <div>
         <NavBar />
 
-        <h1>Register</h1>
+        <div class="background-image">
+            <div class="container">
+                <!-- Ready to sign up? -->
+                <div class="row">
+                    REgister
+                </div>
+
+                <!-- Login Form -->
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
 
         <Footer />
     </div>

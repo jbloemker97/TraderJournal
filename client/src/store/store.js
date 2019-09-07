@@ -1,22 +1,26 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import API from '../helpers/api';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        user: { jwt: null, id: null }, // JSON Web Token & Mongo User ID
+        jwt: null, // JSON Web Token
     },
     actions: {
-        logout: ({ commit }) => {
-            commit('setUser');
+        login: async ({ commit }, obj) => {
+            let user = await API.login(obj.email, obj.password);
+
+            commit('setJwt', user);
         }
     },
     mutations: {
-        setUser: (state, user) => {
-            state.user.jwt = user.jwt;
-            state.user.id = user.id;
+        setJwt: (state, payload) => {
+            state.jwt = payload.headers['x-auth-token'];
         }
     },
-    getters: {}
+    getters: {
+        getJwt: state => state.jwt
+    }
 });
