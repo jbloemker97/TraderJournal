@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const PORT = 5000;
 
@@ -11,6 +12,7 @@ let app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(morgan('tiny')); // For Dev
+app.use(cors());
 
 // Connect to mongodb
 mongoose.connect(config.mongoURI, { useNewUrlParser: true })
