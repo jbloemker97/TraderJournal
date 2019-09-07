@@ -1,8 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersist from 'vuex-persist';
 import API from '../helpers/api';
 
 Vue.use(Vuex);
+
+const vuexPersist = new VuexPersist({
+    key: 'TraderJournal',
+    storage: window.sessionStorage
+});
 
 export const store = new Vuex.Store({
     state: {
@@ -13,6 +19,9 @@ export const store = new Vuex.Store({
             let user = await API.login(obj.email, obj.password);
 
             commit('setJwt', user);
+        },
+        logout: ({ commit }) => {
+            commit('setJwt', null);
         }
     },
     mutations: {
@@ -22,5 +31,6 @@ export const store = new Vuex.Store({
     },
     getters: {
         getJwt: state => state.jwt
-    }
+    },
+    plugins: [vuexPersist.plugin]
 });

@@ -19,8 +19,11 @@
                         <li class="nav-item">
                         <a class="nav-link" href="#">Link 2</a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
+                        <li class="nav-item" v-if="isLoggedIn">
+                        <router-link to="home" class="nav-link">Logout</router-link>
+                        </li>
+                        <li class="nav-item" v-else>
+                        <router-link to="login" class="nav-link">Login</router-link>
                         </li>
                     </ul>
                 </div>
@@ -35,9 +38,11 @@ export default {
     methods: {
         call () {
             this.$store.dispatch('login');
-        },
-        get () {
-            return this.$store.getter.getJwt;
+        }
+    },
+    computed: {
+        isLoggedIn () {
+            return Boolean(this.$store.getters.getJwt);
         }
     }
 }

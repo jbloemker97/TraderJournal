@@ -39,10 +39,13 @@ export default {
     },
     methods: {
         login (event) {
-            const email = document.querySelector('#email').value;
-            const password = document.querySelector('#password').value;
+            const email = document.querySelector('#email');
+            const password = document.querySelector('#password');
 
-            this.$store.dispatch('login', { email, password });
+            this.$store.dispatch('login', { email: email.value, password: password.value });
+
+            email.value = "";
+            password.value = "";
 
             event.preventDefault();
         }
