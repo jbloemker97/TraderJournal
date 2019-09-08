@@ -45,10 +45,14 @@ export default {
 
 <style scoped>
     nav {
-        background-color: #0377fc;
+        background-color: #006DB0;
     }
 
     a {
         color: #fff !important;
+    }
+
+    a:hover {
+        opacity: 0.8;
     }
 </style>
