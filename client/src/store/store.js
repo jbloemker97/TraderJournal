@@ -16,12 +16,21 @@ export const store = new Vuex.Store({
     },
     actions: {
         login: async ({ commit }, obj) => {
-            let user = await API.login(obj.email, obj.password);
+            const user = await API.login(obj.email, obj.password);
             const error = user.error;
 
             commit('setJwt', user.headers['x-auth-token']);
 
             API.finalizeLogin(error);
+        },
+        register: async ({ commit }, obj) => {
+            const user = await API.register(obj.name, obj.email, obj.password);
+            const error = user.error;
+
+            
+            commit('setJwt', user.headers['x-auth-token']);
+            
+            API.finalizeRegister(error);
         },
         logout: ({ commit }) => {
             commit('setJwt', null);
