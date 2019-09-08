@@ -46,6 +46,9 @@ export default {
 <style scoped>
     nav {
         background-color: #006DB0;
+        position: fixed;
+        width: 100%;
+        z-index: 2;
     }
 
     a {
