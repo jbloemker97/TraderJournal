@@ -14,6 +14,10 @@
                 <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
                     <ul class="navbar-nav">
                         <li class="nav-item" v-if="isLoggedIn">
+                            <router-link :to="{ name: 'Strategy' }" class="nav-link">My Strategies</router-link>
+                        </li>
+                        
+                        <li class="nav-item" v-if="isLoggedIn">
                             <router-link :to="{ name: 'Home' }" class="nav-link" @click.native="logout">Logout</router-link>
                         </li>
 
