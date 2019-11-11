@@ -12,14 +12,15 @@ const vuexPersist = new VuexPersist({
 
 export const store = new Vuex.Store({
     state: {
-        jwt: null, // JSON Web Token
+        // jwt: null, // JSON Web Token
+        user: null, // User object
     },
     actions: {
         login: async ({ commit }, obj) => {
             const user = await API.login(obj.email, obj.password);
             const error = user.error;
 
-            commit('setJwt', user.headers['x-auth-token']);
+            commit('setUser', user);
 
             API.finalizeLogin(error);
         },
@@ -28,22 +29,24 @@ export const store = new Vuex.Store({
             const error = user.error;
 
             
-            commit('setJwt', user.headers['x-auth-token']);
+            commit('setUser', user);
             
             API.finalizeRegister(error);
         },
         logout: ({ commit }) => {
-            commit('setJwt', null);
+            commit('setUser', null);
         }
     },
     mutations: {
-        setJwt: (state, payload) => {
+        setUser: (state, payload) => {
             // state.jwt = payload.headers['x-auth-token'];
-            state.jwt = payload;
+            // state.jwt = payload;
+            state.user = payload;
         }
     },
     getters: {
-        getJwt: state => state.jwt
+        // getJwt: state => state.jwt
+        getUser: state => state.user
     },
     plugins: [vuexPersist.plugin]
 });

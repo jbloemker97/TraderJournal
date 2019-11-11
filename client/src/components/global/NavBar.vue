@@ -13,14 +13,28 @@
                 <!-- Links -->
                 <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
                     <ul class="navbar-nav">
+
+                        <!-- Product -->
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'Product' }" class="nav-link">Product</router-link>
+                        </li>
+
+                        <!-- Pricing -->
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'Pricing' }" class="nav-link">Pricing</router-link>
+                        </li>
+
+                        <!-- My Strategies - If Logged in -->
                         <li class="nav-item" v-if="isLoggedIn">
                             <router-link :to="{ name: 'Strategy' }" class="nav-link">My Strategies</router-link>
                         </li>
                         
+                        <!-- Logout -->
                         <li class="nav-item" v-if="isLoggedIn">
                             <router-link :to="{ name: 'Home' }" class="nav-link" @click.native="logout">Logout</router-link>
                         </li>
 
+                        <!-- Login -->
                         <li class="nav-item" v-else>
                             <router-link :to="{ name: 'Login' }" class="nav-link">Login</router-link>
                         </li>
@@ -41,7 +55,7 @@ export default {
     },
     computed: {
         isLoggedIn () {
-            return Boolean(this.$store.getters.getJwt);
+            return Boolean(this.$store.getters.getUser);
         }
     }
 }
@@ -53,6 +67,10 @@ export default {
         position: fixed;
         width: 100%;
         z-index: 2;
+    }
+
+    .nav-item {
+        padding: 15px;
     }
 
     a {

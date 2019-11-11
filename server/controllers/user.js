@@ -5,11 +5,15 @@ const bcrypt = require('bcrypt');
 async function registerUser (req, res) {
     const { error } = validateRegister(req.body);
 
-    if (error) res.status(400).send({ error: error.details[0].message });
+    if (error)  {
+        return res.status(400).send({ error: error.details[0].message });
+    } 
 
     let user = await User.findOne({ email: req.body.email });
 
-    if (user) return res.status(400).send({ error: 'Email already has an account' });
+    if (user) {
+        return res.status(400).send({ error: 'Email already has an account' });
+    } 
 
     user = new User({
         name: req.body.name,

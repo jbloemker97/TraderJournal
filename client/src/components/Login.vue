@@ -1,7 +1,7 @@
 <template>
     <div class="body">
         <div class="container">
-            <div class="row mt-5">
+            <div class="row pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 m-auto">
                     <h4>Login</h4>
                     <form action="" method="POST" @submit="login">
