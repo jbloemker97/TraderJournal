@@ -6,6 +6,8 @@ export default {
             const url = 'http://localhost:5000/user';
             const headers = {'x-auth-token': jwt};
             const user = await axios.get(url, { headers });
+
+            return user;
         }
     }
 };

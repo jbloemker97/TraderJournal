@@ -19,11 +19,6 @@
                             <router-link :to="{ name: 'Product' }" class="nav-link">Product</router-link>
                         </li>
 
-                        <!-- Pricing -->
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'Pricing' }" class="nav-link">Pricing</router-link>
-                        </li>
-
                         <!-- My Strategies - If Logged in -->
                         <li class="nav-item" v-if="isLoggedIn">
                             <router-link :to="{ name: 'Strategy' }" class="nav-link">My Strategies</router-link>

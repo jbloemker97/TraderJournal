@@ -4,6 +4,7 @@ import Strategy from '../components/Strategy';
 import Home from '../components/Home';
 import Register from '../components/Register';
 import Login from '../components/Login';
+import Product from '../components/Product';
 
 Vue.use(Router);
 
@@ -20,6 +21,11 @@ export default new Router({
             component: Strategy
         },
         {
+            path: '/product/',
+            name: 'Product',
+            component: Product
+        },
+        {
             path: '/user/register',
             name: 'Register',
             component: Register
@@ -28,7 +34,7 @@ export default new Router({
             path: '/user/login',
             name: 'Login',
             component: Login
-        }
+        },
     ],
     mode: 'history'
 });
