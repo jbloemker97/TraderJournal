@@ -1,123 +1,119 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row mt-5 mb-5">
-        <div class="col-lg-4">
-          <div class="card">
-            <form action="" method="POST" class="mt-3">
-              <h4 class="card-title text-center">Build New Strategy</h4>
-
-              <div class="strategyInput">
-                <input v-model="typedValue" type="text" name="checklistItemInput" id="checklistItemInput" class="w-50">
-                <button @click="addRule" class="btn btn-primary">Add Rule</button>
-              </div>
-              
-
-              <div class="items mt-3">
-                <div v-for="(rule, i) in rules" :key="rule" class="checkListItemDiv">
-                  <p class="checkListItem">{{ rule }}</p>
-                  <div class="x">&#10005;</div>
-                  <input :id="i" type="hidden" name="checkListItemValue" :value="rule">
-                </div>
-              </div> 
-
-              <button type="submit" class="btn btn-primary w-100 mt-3 mb-3 p-2">Add New Strategy</button>
-            </form>
+    <section class="my-strategies">
+      <div class="container">
+        <div class="d-flex justify-content-around">
+          <div class="square">
+            <div class="content">
+              CONTENT
+            </div>
           </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="table">
-            <table class="table">
-              <thead>
-                  <tr>
-                      <th>Row</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Email</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>Clark</td>
-                      <td>Kent</td>
-                      <td>clarkkent@mail.com</td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>John</td>
-                      <td>Carter</td>
-                      <td>johncarter@mail.com</td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>Peter</td>
-                      <td>Parker</td>
-                      <td>peterparker@mail.com</td>
-                  </tr>            
-              </tbody>
-            </table>
+
+          <div class="square">
+            <div class="content">
+              CONTENT
+            </div>
+          </div>
+
+          <div class="square">
+            <div class="content">
+              CONTENT
+            </div>
+          </div>
+
+          <div class="square">
+            <div class="content">
+              CONTENT
+            </div>
+          </div>
+
+          <div class="square">
+            <div class="content">
+              CONTENT
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Add Button -->
+      <button type="button" class="btn btn-primary btn-circle btn-xl" @click="loadNewStrategy = !loadNewStrategy">&#43;</button>
+
+      <!-- Add Strategy Modal -->
+      <NewStrategyForm v-if="this.loadNewStrategy" />
+
+    </section>
   </div>
 </template>
 
 <script>
+  import NewStrategyForm from './global/NewStrategyForm';
  
 
   export default {
     name: 'Strategy',
+    components: {
+      NewStrategyForm
+    },
     data () {
       return {
-        typedValue: '',
-        rules: []
-      }
-    },
-    methods: {
-      addRule (event) {
-        event.preventDefault();
-
-        this.rules.push(this.typedValue);
-
-        this.typedValue = '';
+        loadNewStrategy: false
       }
     }
   }
 </script>
 
 <style scoped>
-  form {
-    color: #000;
+  .my-strategies {
+    min-height: 100vh;
+    padding-top: 106px;
   }
 
-  .container {
-    padding-top: 56px;
-  }
-
-  .strategyInput {
+  .square-container {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
   }
 
-  .checkListItemDiv {
-    border-bottom: #e6e6e6 solid 1px;
-    border-right: #e6e6e6 solid 1px;
-    display: flex;
-    justify-content: space-between;
+  .square {
+    position: relative;
+    flex-basis: calc(33.333% - 10px);
+    margin: 15px;
+    border: 1px solid;
+    box-sizing: border-box;
   }
 
-  .checkListItem {
-    color: #000;
-    font-size: 15px;
-    width: 75%;
+  .square::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
   }
 
-  .x {
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    padding-right: 10px;
+  .square .content {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
   }
+
+ .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.42857;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
+
 </style>
