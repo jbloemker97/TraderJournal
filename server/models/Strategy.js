@@ -13,18 +13,12 @@ const strategySchema = mongoose.Schema({
         maxLength: 255,
         required: true
     },
-    entryCheckList: {
+    checklists: {
         type: [{
-            type: String,
-            maxLength: 255
+            name: String, // Name of checklist. Ex. Entry, Exit, Manage etc
+            items: Array // Check list items under this checklist
         }]
     },
-    exitCheckList: {
-        type: [{
-            type: String,
-            maxLength: 255
-        }]
-    }
 });
 
 const Strategy = mongoose.model('Strategy', strategySchema);
@@ -33,8 +27,7 @@ function validateNewStrategy (strategy) {
     const schema = {
         user: Joi.string().required(),
         title: Joi.string().min(3).max(255).required(),
-        entryCheckList: Joi.array().items(Joi.string()),
-        exitCheckList: Joi.array().items(Joi.string())
+        checklists: Joi.array().items(Joi.object())
     };
 
     return Joi.validate(strategy, schema);

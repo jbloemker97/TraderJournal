@@ -9,8 +9,7 @@ async function addStrategy (req, res) {
     let strategy = new Strategy({
         user: req.body.user,
         title: req.body.title, 
-        entryCheckList: req.body.entryCheckList, 
-        exitCheckList: req.body.exitCheckList
+        checklists: req.body.checklists
     });
 
     await strategy.save();
@@ -18,8 +17,7 @@ async function addStrategy (req, res) {
     res.status(200).send({
         user: strategy.user,
         title: strategy.title, 
-        entryCheckList: strategy.entryCheckList, 
-        exitCheckList: strategy.exitCheckList
+        checklists: req.body.checklists
     });
 
 }

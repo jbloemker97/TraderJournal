@@ -4,6 +4,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h2 class="w-100 text-center pt-2 pb-2">Strategy Name</h2>
+                    <input type="hidden" name="strategyHeader" value="">
                     <div class="row h-100">
                         <div class="col-lg-5 form">
                             <form action="" method="POST" id="newStrategy" @submit="addRule">
